@@ -1,35 +1,61 @@
 # PD3QN: A Predictive Dueling Double Deep Q-Network
+# 基于轻量级未来状态预测与自适应置信度门控的预测型 D3QN
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-ee4c2c)](https://pytorch.org/)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
 
-本仓库包含论文 **"PD3QN: A Predictive Dueling Double Deep Q-Network with Lightweight Future State Prediction and Adaptive Confidence Gating"** 的官方 PyTorch 代码实现。
+这是论文 **"PD3QN: A Predictive Dueling Double Deep Q-Network with Lightweight Future State Prediction and Adaptive Confidence Gating"** 的官方代码实现。
 
----
+PD3QN 是一种新颖的深度强化学习（DRL）框架，旨在解决高动态、低容错环境（如 **带火球的 Flappy Bird**）中的**决策短视（Decision Myopia）**问题。通过将轻量级环境模型与 Model-free 骨干网络结合，实现了鲁棒的长程规划能力。
 
-## 📖 项目简介 (Introduction)
+## 📖 目录
+- [背景介绍](#-背景介绍)
+- [核心特性](#-核心特性)
+- [目录结构](#-目录结构)
+- [环境安装](#-环境安装)
+- [使用指南](#-使用指南)
+  - [训练模型](#训练模型)
+  - [测试模型](#测试模型)
+- [环境说明](#-环境说明)
+- [引用](#-引用)
 
-针对传统无模型（Model-free）算法在高动态、低容错环境下的“决策短视”问题，本项目提出了 **PD3QN** 框架。
+## 🧩 背景介绍
 
-该模型集成了轻量级的 **一步状态预测器 (OSSP)** 和 **自适应置信度门控网络 (CGN)**，在保证训练稳定性的同时，赋予智能体前瞻性的规划能力。实验在高度定制的 *Flappy Bird with Fireballs* 环境中进行，结果表明 PD3QN 在平均得分和最大得分上均显著优于 D3QN 基线。
+传统的 Model-free 算法（如 D3QN）在面对快节奏环境时往往缺乏前瞻性。PD3QN 通过引入以下机制解决了这一问题：
+1.  **一步状态预测器 (OSSP):** 一个轻量级模块，用于预测下一帧画面及死亡风险。
+2.  **自适应置信度门控 (CGN):** 动态调节对预测结果的信任程度，防止早期模型误差误导策略学习。
+3.  **固定动作向量 (Fixed Action Vectors):** 替代传统的可学习 Embedding，在训练初期提供稳定的输入特征。
 
-### 核心特性
-1.  **OSSP 预测器**: 使用混合损失函数 (MSE + Edge + SSIM) 捕捉环境物理动态。
-2.  **CGN 门控**: 动态计算预测置信度权重 $w$，智能调节前瞻规划的影响力。
-3.  **稳定性优化**: 采用固定动作向量 (Fixed Action Vectors) 和密集引导奖励 (Dense Guided Rewards)。
+<p align="center">
+  <img src="assets/framework.png" alt="PD3QN Framework" width="800">
+  <br>
+  <em>图：PD3QN 整体架构图</em>
+</p>
 
----
+## ✨ 核心特性
 
-## 📂 代码结构 (File Structure)
+* **混合损失函数 (Hybrid Loss):** 结合 MSE、边缘检测 (Sobel) 和 SSIM，强制预测器关注物理结构而非背景噪声。
+* **分层经验回放 (Stratified Experience Replay):** 平衡游戏早期（简单场景）和晚期（复杂场景）的样本分布，防止遗忘。
+* **密集引导奖励 (Dense Guided Rewards):** 利用基于距离的奖励塑形，显著加速训练收敛。
+* **高难度环境:** 在原版 Flappy Bird 基础上增加了**动态火球**障碍，考验智能体的动态避障能力。
+
+## 📂 目录结构
+
+基于本仓库的代码组织：
 
 ```text
 PD3QN/
-├── train_PD3QN.py      # [核心] 训练脚本 (包含 PD3QN, OSSP, CGN 模型定义)
-├── test_PD3QN.py       # [核心] 测试脚本 (支持批量评估与截尾统计)
-├── flappy_bird.py      # 训练环境 (无渲染，高FPS优化)
-├── flappy_bird-test.py # 测试环境 (带渲染窗口，用于可视化)
-├── requirements.txt    # 依赖库列表
-├── assets/             # 游戏素材 (图片/音频)
-├── results/            # 输出目录 (保存模型 .pth 和测试报告)
-└── logs/               # TensorBoard 日志目录
+├── assets/                          # 游戏资源 (图片 sprites, 字体 fonts)
+├── DDQN_Innovation_Research/
+│   └── improvements/
+│       └── experiments/
+│           └── train_PD3QN.py       # 🚀 核心训练脚本
+├── logs/                            # TensorBoard 日志文件
+├── results/                         # 模型保存 (.pth) 和测试报告 (.json)
+├── src/                             # 源代码库
+│   ├── flappy_bird.py               # 游戏环境 (训练版)
+│   ├── flappy_bird-test.py          # 游戏环境 (测试版 - 无头模式适配)
+│   └── requirements.txt             # 项目依赖列表
+├── test_PD3QN.py                    # 🧪 批量测试脚本
+└── README.md                        # 项目说明文档
