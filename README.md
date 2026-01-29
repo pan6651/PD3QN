@@ -29,9 +29,9 @@ PD3QN 是一种新颖的深度强化学习（DRL）框架，旨在解决高动�
 3.  **固定动作向量 (Fixed Action Vectors):** 替代传统的可学习 Embedding，在训练初期提供稳定的输入特征。
 
 <p align="center">
-  <img src="assets/framework.png" alt="PD3QN Framework" width="800">
+  <img src="framework.png" alt="PD3QN Framework" width="800">
   <br>
-  <em>图：PD3QN 整体架构图（请确保 assets 目录下有 framework.png）</em>
+  <em>图：PD3QN 整体架构图</em>
 </p>
 
 ## ✨ 核心特性
