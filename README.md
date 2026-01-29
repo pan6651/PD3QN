@@ -68,7 +68,7 @@ PD3QN/
 1. **克隆仓库:**
 
    ```bash
-   git clone [https://github.com/your-username/PD3QN.git](https://github.com/your-username/PD3QN.git)
+   git clone https://github.com/pan6651/PD3QN.git
    cd PD3QN
    ```
 
