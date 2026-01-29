@@ -4,9 +4,9 @@
 [![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
 
-我们提出了 **PD3QN**，一种新颖的预测型D3QN，旨在解决高动态、低容错环境（如带火球的 Flappy Bird）中的决策短视 (Decision Myopia)问题。
+我们提出了 **PD3QN**，一种新颖的预测型D3QN，旨在解决高动态、低容错环境（如带火球的 Flappy Bird）中的决策短视(Decision Myopia)问题。
 
-针对传统 Model-free 算法缺乏前瞻性的痛点，我们率先引入了轻量级一步状态预测器 (OSSP)来推断未来画面及潜在风险，并配合自适应置信度门控网络 (CGN)动态调节预测结果在决策中的权重。通过这种机制，PD3QN 能够在保证训练稳定性的同时，显著增强智能体的长程规划能力与鲁棒性。
+针对传统 Model-free 算法缺乏前瞻性的痛点，我们率先引入了轻量级一步状态预测器(OSSP)来推断未来画面及潜在风险，并配合自适应置信度门控网络(CGN)动态调节预测结果在决策中的权重。通过这种机制，PD3QN 能够在保证训练稳定性的同时，显著增强智能体的长程规划能力与鲁棒性。
 <p align="center">
   <img src="framework.png" alt="PD3QN Framework" width="800">
   <br>
