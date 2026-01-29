@@ -59,3 +59,24 @@ PD3QN/
 │   └── requirements.txt             # 项目依赖列表
 ├── test_PD3QN.py                    # 🧪 批量测试脚本
 └── README.md                        # 项目说明文档
+
+## ⚙️ 环境安装
+
+1.  **克隆仓库:**
+    ```bash
+    git clone [https://github.com/your-username/PD3QN.git](https://github.com/your-username/PD3QN.git)
+    cd PD3QN
+    ```
+
+2.  **创建虚拟环境 (推荐):**
+    ```bash
+    conda create -n pd3qn python=3.10
+    conda activate pd3qn
+    ```
+
+3.  **安装依赖:**
+    注意：`requirements.txt` 位于 `src` 目录下。
+    ```bash
+    pip install -r src/requirements.txt
+    ```
+    *主要依赖包括: `torch`, `pygame`, `opencv-python`, `tensorboardX`, `numpy` 等。*
