@@ -4,75 +4,73 @@
 [![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
 
-我们提出了 **PD3QN**，一种新颖的预测型D3QN，旨在解决高动态、低容错环境（如带火球的 Flappy Bird）中的决策短视(Decision Myopia)问题。
+We propose **PD3QN**, a novel Predictive D3QN designed to address the problem of **Decision Myopia** in highly dynamic and low-fault-tolerant environments (such as Flappy Bird with fireballs).
 
-针对传统 Model-free 算法缺乏前瞻性的痛点，我们率先引入了轻量级一步状态预测器(OSSP)来推断未来画面及潜在风险，并配合自适应置信度门控网络(CGN)动态调节预测结果在决策中的权重。通过这种机制，PD3QN 能够在保证训练稳定性的同时，显著增强智能体的长程规划能力与鲁棒性。
+To tackle the lack of foresight in traditional Model-free algorithms, we introduce a **Lightweight One-Step State Predictor (OSSP)** to infer future frames and potential risks, coupled with an **Adaptive Confidence Gating Network (CGN)** to dynamically adjust the weight of predictions during decision-making. Through this mechanism, PD3QN significantly enhances the agent's long-range planning capabilities and robustness while ensuring training stability.
+
 <p align="center">
   <img src="framework.png" alt="PD3QN Framework" width="800">
   <br>
-  <em>图：PD3QN 整体架构图</em>
+  <em>Figure: Overall Architecture of PD3QN</em>
 </p>
 
+This guide provides a step-by-step walkthrough for using this repository. 👇
 
-接下来，我们将一步一步指导您如何使用这个代码库。 👇
+## 📂 Directory Structure
 
-## 📂 目录结构
-
-基于本仓库的代码组织：
+Based on the project organization:
 
 ```text
 PD3QN/
-├── assets/                          # 游戏资源 (图片 sprites, 字体 fonts)
+├── assets/                          # Game assets (sprites, fonts)
 ├── DDQN_Innovation_Research/
 │   └── improvements/
 │       └── experiments/
-│           └── train_PD3QN.py       # 🚀 核心训练脚本
-├── logs/                            # TensorBoard 日志文件
-├── results/                         # 模型保存 (.pth)
-├── src/                             # 源代码库
-│   ├── flappy_bird.py               # 游戏环境 (训练版)
-│   └── flappy_bird-test.py          # 游戏环境 (测试版)
-├── requirements.txt             # 项目依赖列表
-├── test_PD3QN.py                    # 🧪 批量测试脚本
-└── README.md                        # 项目说明文档
+│           └── train_PD3QN.py       # 🚀 Core training script
+├── logs/                            # TensorBoard log files
+├── results/                         # Saved models (.pth)
+├── src/                             # Source code library
+│   ├── flappy_bird.py               # Game environment (Training version)
+│   └── flappy_bird-test.py          # Game environment (Testing version)
+├── requirements.txt                 # Project dependencies
+├── test_PD3QN.py                    # 🧪 Batch testing script
+└── README.md                        # Project documentation
 ```
 
-## ⚙️ 环境安装
+## ⚙️ Installation
 
-1. **克隆仓库:**
+1. **Clone the Repository:**
 
    ```bash
    git clone https://github.com/pan6651/PD3QN.git
    cd PD3QN
    ```
 
-2. **创建虚拟环境 (推荐):**
+2. **Create a Virtual Environment:**
 
    ```bash
    conda create -n pd3qn python=3.10
    conda activate pd3qn
    ```
 
-3. **安装依赖:**
-   注意：`requirements.txt` 位于 `src` 目录下。
+3. **Install Dependencies:**
 
    ```bash
    pip install -r src/requirements.txt
    ```
-   *主要依赖包括: `torch`, `pygame`, `opencv-python`, `tensorboardX`, `numpy` 等。*
+   *Main dependencies include: torch, pygame, opencv-python, tensorboardX, numpy, etc.*
 
-## 🚀 使用指南
+## 🚀 Usage Guide
 
-### 训练模型
-请在项目根目录下运行以下命令以从头开始训练 PD3QN 模型：
-
+### Training the Model
+Run the following command from the root directory to start training the PD3QN model from scratch:
 ```bash
 python DDQN_Innovation_Research/improvements/experiments/train_PD3QN.py
 ```
 
-* **配置:** 您可以在 `train_PD3QN.py` 中直接修改超参数（Batch size, LR, Gamma 等）。
-* **日志:** 训练日志将保存至 `logs/PD3QN_FixedVectors/`。
-* **模型:** 检查点（Checkpoints）将保存至 `results/PD3QN_FixedVectors/`。
+* **Configuration:** You can modify hyperparameters (Batch size, LR, Gamma, etc.) directly in `train_PD3QN.py`.
+* **Logs:** Training logs will be saved to `logs/PD3QN_FixedVectors/`.
+* **Models:** Checkpoints (model files) will be saved to `results/PD3QN_FixedVectors/`.
 
 ### 测试模型
 用于评估已训练的模型。该脚本会执行批量测试，计算修剪后的平均分（去除最高/最低分），并生成详细报告。
@@ -84,36 +82,35 @@ python test_PD3QN.py
 * 脚本会自动搜索 `results/PD3QN_FixedVectors/` 目录下的模型文件。
 * 测试摘要和详细 JSON 报告将生成在 `results/test_reports/` 中。
 
-### 监控训练
-使用 TensorBoard 实时查看 Loss 和 Q值曲线：
+### Testing the Model
+Used for evaluating trained models. This script performs batch testing, calculates the trimmed mean score (removing the highest and lowest scores), and generates a detailed report.
 
 ```bash
 tensorboard --logdir=logs/PD3QN_FixedVectors
 ```
 
-## 🎮 环境说明: Flappy Bird with Fireballs
+## 🎮 Environment: Flappy Bird with Fireballs
 
-本环境是基于 `pygame` 修改的高难度版本：
+This environment is a high-difficulty version modified based on `pygame`:
 
-* **状态 (State):** 连续 4 帧堆叠的灰度图像 (84x84)。
-* **动作 (Actions):** 0 (什么都不做), 1 (跳跃/Flap)。
-* **奖励 (Rewards):**
-    * 存活每帧: +0.1
-    * 通过管道: +1.0
-    * 躲避火球: +0.5
-    * 碰撞 (Terminal): -1.0
-    * *密集引导:* 基于与管道中心距离的连续奖励/惩罚。
+* **State:** 4 stacked consecutive grayscale frames (84x84).
+* **Actions:** 0 (Idle/Do nothing), 1 (Flap/Jump).
+* **Rewards:**
+    * Survival per frame: +0.1
+    * Passing through pipes: +1.0
+    * Dodging fireballs: +0.5
+    * Collision (Terminal state): -1.0
+    * *Dense Reward Shaping:* Continuous reward/penalty based on the distance from the center of the pipe gap.
 
 
 
-## 🤝 致谢 (Acknowledgments)
+## 🤝 Acknowledgments
 
-* **代码致谢 (Code Reference):**
-    本项目的游戏环境代码参考并修改自 [SeVEnMY/ReinforcementLearningFlappyBird](https://github.com/SeVEnMY/ReinforcementLearningFlappyBird)。
-   
+* **Code Reference:**
+    The game environment code for this project is adapted and modified from [SeVEnMY/ReinforcementLearningFlappyBird](https://github.com/SeVEnMY/ReinforcementLearningFlappyBird).
 
-* **基金支持 (Funding):**
-    本研究工作得到了以下项目的资助：
+* **Funding:**
+    This research work is supported by the following projects:
     * **National Natural Science Foundation of China** (Grant No. 62471272, 61806107, 62201314)
     * **Opening Project of State Key Laboratory of Digital Publishing Technology**
     * **NSF of Shandong Province** (Grant No. ZR2025MS986)
