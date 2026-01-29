@@ -107,7 +107,7 @@ This environment is a high-difficulty version modified based on `pygame`:
 ## 🤝 Acknowledgments
 
 * **Code Reference:**
-    The game environment code for this project is adapted and modified from [SeVEnMY/ReinforcementLearningFlappyBird](https://github.com/SeVEnMY/ReinforcementLearningFlappyBird).
+    The game environment is based on and extended from [SeVEnMY/ReinforcementLearningFlappyBird](https://github.com/SeVEnMY/ReinforcementLearningFlappyBird).
 
 * **Funding:**
     This research work is supported by the following projects:
