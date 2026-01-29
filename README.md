@@ -133,23 +133,20 @@ tensorboard --logdir=logs/PD3QN_FixedVectors
     * 碰撞 (Terminal): -1.0
     * *密集引导:* 基于与管道中心距离的连续奖励/惩罚。
 
-## 📄 引用
 
-如果您在研究中使用了本代码，请引用我们的论文：
 
-```bibtex
-@article{pan2026pd3qn,
-  title={PD3QN: A Predictive Dueling Double Deep Q-Network with Lightweight Future State Prediction and Adaptive Confidence Gating},
-  author={Pan, Zihao and Shi, Cao},
-  journal={Neurocomputing (Submitted)},
-  year={2026}
-}
-```
+## 🤝 致谢 (Acknowledgments)
 
-## 🤝 致谢
+* **代码致谢 (Code Reference):**
+    本项目的游戏环境代码参考并修改自 [SeVEnMY/ReinforcementLearningFlappyBird](https://github.com/SeVEnMY/ReinforcementLearningFlappyBird)。
+    *The game environment code in this project is adapted from [SeVEnMY/ReinforcementLearningFlappyBird](https://github.com/SeVEnMY/ReinforcementLearningFlappyBird).*
 
-* 原版 Flappy Bird 代码参考自 [Viet Nguyen](https://github.com/uvipen/Flappy-bird-deep-Q-learning)。
-* 本研究由国家自然科学基金支持。
+* **基金支持 (Funding):**
+    本研究工作得到了以下项目的资助：
+    *This work was supported in part by:*
+    * **National Natural Science Foundation of China** (Grant No. 62471272, 61806107, 62201314)
+    * **Opening Project of State Key Laboratory of Digital Publishing Technology**
+    * **NSF of Shandong Province** (Grant No. ZR2025MS986)
 
 ---
 *如有任何问题，请提交 Issue 或联系 [caoshi@yeah.net]*
