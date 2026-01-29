@@ -7,7 +7,7 @@
 
 这是论文 **"PD3QN: A Predictive Dueling Double Deep Q-Network with Lightweight Future State Prediction and Adaptive Confidence Gating"** 的官方代码实现。
 
-PD3QN 是一种新颖的深度强化学习（DRL）框架，旨在解决高动态、低容错环境（如 **带火球的 Flappy Bird**）中的**决策短视（Decision Myopia）**问题。通过将轻量级环境模型与 Model-free 骨干网络结合，实现了鲁棒的长程规划能力。
+PD3QN 是一种新颖的深度强化学习（DRL）框架，旨在解决高动态、低容错环境（如 **带火球的 Flappy Bird**）中的决策短视（Decision Myopia）问题。通过将轻量级环境模型与 Model-free 骨干网络结合，实现了鲁棒的长程规划能力。
 
 ## 📖 目录
 - [背景介绍](#-背景介绍)
