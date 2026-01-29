@@ -72,15 +72,15 @@ python DDQN_Innovation_Research/improvements/experiments/train_PD3QN.py
 * **Logs:** Training logs will be saved to `logs/PD3QN_FixedVectors/`.
 * **Models:** Checkpoints (model files) will be saved to `results/PD3QN_FixedVectors/`.
 
-### 测试模型
-用于评估已训练的模型。该脚本会执行批量测试，计算修剪后的平均分（去除最高/最低分），并生成详细报告。
+### Testing the Model
+Used for evaluating trained models. This script performs batch testing, calculates the trimmed mean score (removing the highest and lowest scores), and generates a detailed report.
 
 ```bash
 python test_PD3QN.py
 ```
 
-* 脚本会自动搜索 `results/PD3QN_FixedVectors/` 目录下的模型文件。
-* 测试摘要和详细 JSON 报告将生成在 `results/test_reports/` 中。
+* The script automatically searches for model files in the `results/PD3QN_FixedVectors/` directory.
+* Test summaries and detailed JSON reports will be generated in `results/test_reports/`.
 
 ### Testing the Model
 Used for evaluating trained models. This script performs batch testing, calculates the trimmed mean score (removing the highest and lowest scores), and generates a detailed report.
