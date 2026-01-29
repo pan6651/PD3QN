@@ -1,3 +1,4 @@
+Markdown
 # PD3QN: A Predictive Dueling Double Deep Q-Network
 # 基于轻量级未来状态预测与自适应置信度门控的预测型 D3QN
 
@@ -59,24 +60,83 @@ PD3QN/
 │   └── requirements.txt             # 项目依赖列表
 ├── test_PD3QN.py                    # 🧪 批量测试脚本
 └── README.md                        # 项目说明文档
+⚙️ 环境安装
+克隆仓库:
 
-## ⚙️ 环境安装
+Bash
+git clone [https://github.com/your-username/PD3QN.git](https://github.com/your-username/PD3QN.git)
+cd PD3QN
+创建虚拟环境 (推荐):
 
-1.  **克隆仓库:**
-    ```bash
-    git clone [https://github.com/your-username/PD3QN.git](https://github.com/your-username/PD3QN.git)
-    cd PD3QN
-    ```
+Bash
+conda create -n pd3qn python=3.10
+conda activate pd3qn
+安装依赖: 注意：requirements.txt 位于 src 目录下。
 
-2.  **创建虚拟环境 (推荐):**
-    ```bash
-    conda create -n pd3qn python=3.10
-    conda activate pd3qn
-    ```
+Bash
+pip install -r src/requirements.txt
+主要依赖包括: torch, pygame, opencv-python, tensorboardX, numpy 等。
 
-3.  **安装依赖:**
-    注意：`requirements.txt` 位于 `src` 目录下。
-    ```bash
-    pip install -r src/requirements.txt
-    ```
-    *主要依赖包括: `torch`, `pygame`, `opencv-python`, `tensorboardX`, `numpy` 等。*
+🚀 使用指南
+训练模型
+从头开始训练 PD3QN 模型。脚本使用 StratifiedExperienceBuffer 和 FixedActionVectors。
+
+由于脚本路径较深，请在项目根目录下运行：
+
+Bash
+python DDQN_Innovation_Research/improvements/experiments/train_PD3QN.py
+配置: 您可以在 train_PD3QN.py 中直接修改超参数（Batch size, LR, Gamma 等）。
+
+日志: 训练日志将保存至 logs/PD3QN_FixedVectors/。
+
+模型: 检查点（Checkpoints）将保存至 results/PD3QN_FixedVectors/。
+
+测试模型
+用于评估已训练的模型。该脚本会执行批量测试，计算修剪后的平均分（去除最高/最低分），并生成详细报告。
+
+Bash
+python test_PD3QN.py
+脚本会自动搜索 results/PD3QN_FixedVectors/ 目录下的模型文件。
+
+测试摘要和详细 JSON 报告将生成在 results/test_reports/ 中。
+
+监控训练
+使用 TensorBoard 实时查看 Loss 和 Q值曲线：
+
+Bash
+tensorboard --logdir=logs/PD3QN_FixedVectors
+🎮 环境说明: Flappy Bird with Fireballs
+本环境是基于 pygame 修改的高难度版本：
+
+状态 (State): 连续 4 帧堆叠的灰度图像 (84x84)。
+
+动作 (Actions): 0 (什么都不做), 1 (跳跃/Flap)。
+
+奖励 (Rewards):
+
+存活每帧: +0.1
+
+通过管道: +1.0
+
+躲避火球: +0.5
+
+碰撞 (Terminal): -1.0
+
+密集引导: 基于与管道中心距离的连续奖励/惩罚。
+
+📄 引用
+如果您在研究中使用了本代码，请引用我们的论文：
+
+Code snippet
+@article{pan2026pd3qn,
+  title={PD3QN: A Predictive Dueling Double Deep Q-Network with Lightweight Future State Prediction and Adaptive Confidence Gating},
+  author={Pan, Zihao and Shi, Cao},
+  journal={Neurocomputing (Submitted)},
+  year={2026}
+}
+🤝 致谢
+原版 Flappy Bird 代码参考自 Viet Nguyen。
+
+本研究由国家自然科学基金支持。
+
+如有任何问题，请提交 Issue 或联系 [caoshi@yeah.net]
