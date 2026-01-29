@@ -139,11 +139,10 @@ tensorboard --logdir=logs/PD3QN_FixedVectors
 
 * **代码致谢 (Code Reference):**
     本项目的游戏环境代码参考并修改自 [SeVEnMY/ReinforcementLearningFlappyBird](https://github.com/SeVEnMY/ReinforcementLearningFlappyBird)。
-    *The game environment code in this project is adapted from [SeVEnMY/ReinforcementLearningFlappyBird](https://github.com/SeVEnMY/ReinforcementLearningFlappyBird).*
+   
 
 * **基金支持 (Funding):**
     本研究工作得到了以下项目的资助：
-    *This work was supported in part by:*
     * **National Natural Science Foundation of China** (Grant No. 62471272, 61806107, 62201314)
     * **Opening Project of State Key Laboratory of Digital Publishing Technology**
     * **NSF of Shandong Province** (Grant No. ZR2025MS986)
