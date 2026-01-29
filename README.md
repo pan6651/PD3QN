@@ -64,9 +64,7 @@ PD3QN/
 ## 🚀 使用指南
 
 ### 训练模型
-从头开始训练 PD3QN 模型。脚本使用 `StratifiedExperienceBuffer` 和 `FixedActionVectors`。
-
-由于脚本路径较深，请在项目根目录下运行：
+请在项目根目录下运行以下命令以从头开始训练 PD3QN 模型：
 
 ```bash
 python DDQN_Innovation_Research/improvements/experiments/train_PD3QN.py
