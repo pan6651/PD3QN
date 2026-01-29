@@ -146,5 +146,4 @@ tensorboard --logdir=logs/PD3QN_FixedVectors
     * **Opening Project of State Key Laboratory of Digital Publishing Technology**
     * **NSF of Shandong Province** (Grant No. ZR2025MS986)
 
----
-*如有任何问题，请提交 Issue 或联系 [caoshi@yeah.net]*
+
