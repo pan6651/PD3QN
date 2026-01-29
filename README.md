@@ -1,5 +1,4 @@
-# PD3QN: A Predictive Dueling Double Deep Q-Network
-# 基于轻量级未来状态预测与自适应置信度门控的预测型 D3QN
+# PD3QN: A Predictive Dueling Double Deep Q-Network with Lightweight Future State Prediction and Adaptive Confidence Gating
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/)
